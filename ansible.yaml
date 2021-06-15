@@ -1,17 +1,25 @@
 ---
 - hosts: localhost
-  
+
   tasks:
-  - name: remove existing containers
-    command: docker rm -f web-container
-    ignore_errors: yes
-    
+#  - name: remove existing containers
+#    command: docker rm -f web-container
+#    ignore_errors: yes
+
   - name: remove existing images
     command: docker rmi ajayprtemporary/image1
     ignore_errors: yes
-  
+
   - name: creating docker image
     command: docker build -t ajayprtemporary/image1 .
-    
-  - name: create docker container
-    command: docker run -d --name web-container -p 8080:8080 ajayprtemporary/image1
+
+#  - name: create docker container
+#    command: docker run -d --name web-container -p 8080:8080 ajayprtemporary/image1
+  - name: push docker image
+    command: docker push ajayprtemporary/image1
+
+  - name: start deployment
+    command: kubectl create -f deployment.yaml
+
+  - name: start service
+    command: kubectl create -f service.yaml
