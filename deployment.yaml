@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web1
+  labels:
+    app: pro1
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      name: hello
+      labels:
+        app: pro1
+    spec:
+      containers:
+        - name: image1
+          image: ajayprtemporary/image1
+  selector:
+    matchLabels:
+      app: pro1
