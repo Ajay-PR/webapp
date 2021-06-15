@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  
+  tasks:
+  - name: remove existing images
+    command: docker rmi -f ajayprtemporary/image1
+    ignore_errors: yes
+  
+  - name: creating docker image
+    command: docker build -t ajayprtemporary/image1 .
