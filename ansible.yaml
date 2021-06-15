@@ -14,4 +14,4 @@
     command: docker build -t ajayprtemporary/image1 .
     
   - name: create docker container
-    command: docker run -d --name web-container -p 7777:8080 ajayprtemporary/image1
+    command: docker run -d --name web-container -p 8080:8080 ajayprtemporary/image1
